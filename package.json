@@ -1,0 +1,50 @@
+{
+  "name": "Members-only",
+  "version": "1.0.0",
+  "description": "authorization project for secret memberships",
+  "homepage": "https://github.com/Lancer385/Members-only#readme",
+  "bugs": {
+    "url": "https://github.com/Lancer385/Members-only/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lancer385/Members-only.git"
+  },
+  "license": "ISC",
+  "author": "Lancer",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "dev": "node --watch app.js",
+    "start": "node app.js",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "connect-pg-simple": "^10.0.0",
+    "dotenv": "^18.0.5",
+    "ejs": "^7.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "express-validator": "^7.3.2",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "connect-livereload": "^0.6.1",
+    "eslint": "^10.10.0",
+    "globals": "^17.12.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.4.1",
+    "livereload": "^0.10.3",
+    "prettier": "3.9.6"
+  },
+    "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  }
+}
