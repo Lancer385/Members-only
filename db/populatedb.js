@@ -1,6 +1,7 @@
-const { Client } = require("pg");
+import { Client } from "pg";
 
-require("dotenv").config();
+import "dotenv/config";
+
 const drop = `DROP TABLE IF EXISTS posts;`;
 const tables = `
 CREATE TABLE IF NOT EXISTS  users (
