@@ -10,6 +10,7 @@ import pool from "./db/pool.js";
 import connectPgSimple from "connect-pg-simple";
 import indexRouter from "./routes/indexRouter.js";
 import "dotenv/config";
+import { getUserByID, getUserByUsername } from "./db/queries.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -53,9 +54,7 @@ app.use(passport.session());
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
-      const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
-      const user = rows[0];
-
+      const user = getUserByUsername(username);
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
@@ -76,8 +75,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const { rows } = await pool.query("SELECT * FROM users WHERE user_id = $1", [id]);
-    const user = rows[0];
+    const user = await getUserByID(id);
     done(null, user);
   } catch(err) {
     done(err);
