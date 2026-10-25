@@ -1,5 +1,4 @@
 import { Client } from "pg";
-
 import "dotenv/config";
 
 const drop = `DROP TABLE IF EXISTS posts;`;
@@ -23,8 +22,7 @@ CREATE TABLE posts (
     author_id INT,
     FOREIGN KEY (author_id)  REFERENCES users (user_id),
     published_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);`
-;
+);`;
 const seed = `
 INSERT INTO users (first_name, last_name, username, password) Values ('first', 'last', 'lancer', 'ASIWDJWIOFH*@q');
 

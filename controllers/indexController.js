@@ -2,7 +2,9 @@ import { hash } from "bcryptjs";
 import { signupUser } from "../db/queries.js";
 
 async function indexGet(req, res) {
-  res.render("index", { user: req.user });
+  const messages = req.session.messages || [];
+  req.session.messages = [];
+  res.render("index", { user: req.user, error: messages });
 }
 
 async function signupGet(req, res) {

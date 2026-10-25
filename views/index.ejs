@@ -18,5 +18,8 @@
       <button type="submit">Log In</button>
     </form>
   <%}%>
+    <% if (locals.error) { %>
+        <p><%= error[0] %></p>
+    <%}%>
 </body>
 </html>

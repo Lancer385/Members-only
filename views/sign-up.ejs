@@ -6,16 +6,41 @@
 </head>
 <body>
   <h1>Sign Up</h1>
-  <form action="/sign-up" method="POST">
+  <form action="/sign-up" method="POST" onsubmit="return validatePasswords()">
     <label for="first_name">First Name</label>
-    <input id="first_name" name="first_name" placeholder="first name" type="text" />
+    <input id="first_name" name="first_name" placeholder="first name" type="text" required/>
     <label for="last_name">Last Name</label>
     <input id="last_name" name="last_name" placeholder="last name" type="text" />
     <label for="username">Username</label>
-    <input id="username" name="username" placeholder="username" type="text" />
+    <input id="username" name="username" placeholder="username" type="text" required/>
     <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
+    <input id="password" name="password" type="password" required/>
+    <label for="confirmPassword">Confirm Password</label>
+    <input id="confirmPassword" name="confirmPassword" type="password" required/>
+    <div id="errorMsg" style="color: red; margin: 8px 0;">
+    </div>
     <button type="submit">Sign Up</button>
+      <% if (locals.errors) { %>
+            <% console.log(errors) %>
+         <% for (const error of errors) { %>
+            <p><%= error.msg %></p>
+      <% }}%>
   </form>
 </body>
+
+<script>
+  function validatePasswords() {
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const errorMsg = document.getElementById("errorMsg");
+
+  if (password !== confirmPassword) {
+    errorMsg.textContent = "Passwords do not match.";
+    return false;
+  }
+
+  errorMsg.textContent = "";
+  return true;
+}
+</script>
 </html>
